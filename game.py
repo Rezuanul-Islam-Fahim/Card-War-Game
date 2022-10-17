@@ -1,3 +1,6 @@
+from random import shuffle
+
+
 suits = ('Hearts', 'Diamonds', 'Spades', 'Clubs')
 ranks = ('Two', 'Three', 'Four', 'Five', 'Six', 'Seven',
          'Eight', 'Nine', 'Ten', 'Jack', 'Queen', 'King', 'Ace')
@@ -25,8 +28,15 @@ class Deck:
             for rank in ranks:
                 self.card_list.append(Card(suit, rank))
 
+    def shuffle_list(self):
+        shuffle(self.card_list)
+
 
 deck = Deck()
 
+for card in deck.card_list:
+    print(card)
+deck.shuffle_list()
+print('==========================')
 for card in deck.card_list:
     print(card)
