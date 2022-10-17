@@ -31,6 +31,9 @@ class Deck:
     def shuffle_list(self):
         shuffle(self.card_list)
 
+    def deal_one(self):
+        return self.card_list.pop()
+
 
 deck = Deck()
 
