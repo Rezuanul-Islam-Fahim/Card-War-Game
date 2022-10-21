@@ -35,11 +35,20 @@ class Deck:
         return self.card_list.pop()
 
 
-deck = Deck()
+class Player:
 
-for card in deck.card_list:
-    print(card)
-deck.shuffle_list()
-print('==========================')
-for card in deck.card_list:
-    print(card)
+    def __init__(self, name):
+        self.name = name
+        self.all_cards = []
+
+    def add_cards(self, new_cards):
+        if type(new_cards) == list:
+            self.all_cards.extend(new_cards)
+        else:
+            self.all_cards.append(new_cards)
+
+    def remove_one(self):
+        return self.all_cards.pop(0)
+
+    def __str__(self):
+        return f'Player {self.name} has {len(self.all_cards)} cards'
