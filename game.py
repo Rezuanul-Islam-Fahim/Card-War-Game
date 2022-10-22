@@ -54,11 +54,67 @@ class Player:
         return f'Player {self.name} has {len(self.all_cards)} cards'
 
 
-player_one = Player('Fahim')
-player_two = Player('Karim')
-deck = Deck()
-deck.shuffle_list()
+def run_game():
 
-for x in range(int(len(deck.card_list)/2)):
-    player_one.add_cards(deck.deal_one())
-    player_two.add_cards(deck.deal_one())
+    player_one = Player('Fahim')
+    player_two = Player('Karim')
+    deck = Deck()
+    deck.shuffle_list()
+    rounds = 1
+    game_on = True
+
+    for x in range(int(len(deck.card_list)/2)):
+        player_one.add_cards(deck.deal_one())
+        player_two.add_cards(deck.deal_one())
+
+    while game_on:
+        print(f'Round {rounds}')
+
+        if len(player_one.all_cards) == 0:
+            print('Player two wins')
+            game_on = False
+            break
+
+        if len(player_two.all_cards) == 0:
+            print('Player one wins')
+            game_on = False
+            break
+
+        war_on = True
+        player_one_cards = []
+        player_two_cards = []
+        player_one_cards.append(player_one.remove_one())
+        player_two_cards.append(player_two.remove_one())
+
+        while war_on:
+            if player_one_cards[-1].value > player_two_cards[-1].value:
+                player_one.add_cards(player_one_cards)
+                player_one.add_cards(player_two_cards)
+                war_on = False
+            elif player_one_cards[-1].value < player_two_cards[-1].value:
+                player_two.add_cards(player_one_cards)
+                player_two.add_cards(player_two_cards)
+                war_on = False
+            else:
+                print('WAR!!!!!')
+
+                if (len(player_one.all_cards) < 5):
+                    print('Player one is unable to play with 5 cards')
+                    print('Player two wins the game')
+                    game_on = False
+                    break
+                elif (len(player_two.all_cards) < 5):
+                    print('Player two is unable to play with 5 cards')
+                    print('Player one wins the game')
+                    game_on = False
+                    break
+                else:
+                    for i in range(5):
+                        player_one_cards.append(player_one.remove_one())
+                        player_two_cards.append(player_two.remove_one())
+
+        rounds += 1
+
+
+if __name__ == '__main__':
+    run_game()
