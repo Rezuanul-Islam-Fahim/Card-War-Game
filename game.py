@@ -8,6 +8,8 @@ values = {'Two': 2, 'Three': 3, 'Four': 4, 'Five': 5, 'Six': 6, 'Seven': 7,
           'Eight': 8,  'Nine': 9, 'Ten': 10, 'Jack': 11, 'Queen': 12, 'King': 13, 'Ace': 14}
 
 
+# ========== Card class ===========
+# =================================
 class Card:
 
     def __init__(self, suit, rank):
@@ -19,6 +21,8 @@ class Card:
         return self.rank + ' of ' + self.suit
 
 
+# ========== Deck class ===========
+# =================================
 class Deck:
 
     def __init__(self):
@@ -35,6 +39,8 @@ class Deck:
         return self.card_list.pop()
 
 
+# =========== Player class ===============
+# ========================================
 class Player:
 
     def __init__(self, name):
@@ -54,6 +60,8 @@ class Player:
         return f'Player {self.name} has {len(self.all_cards)} cards'
 
 
+# ========== Main game function ============
+# ==========================================
 def run_game():
 
     player_one = Player('Fahim')
